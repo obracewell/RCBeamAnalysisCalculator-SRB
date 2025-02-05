@@ -89,7 +89,7 @@
             
             if (As < Asmin) {
                 errorMessage += 'The cross-sectional area of the steel does NOT exceed the minimum.\n';
-                errorMessage += '!!!DISREGARD ALL FOLLOWING VALUES. This section cannot be used!!!\n';
+                errorMessage += 'These section parameters cannot be used!!!\n';
             } else {
                 output += 'The cross-sectional area exceeds the minimum.\n';
             }
@@ -113,8 +113,8 @@
             } else if (stlstrain >= 0.004 && stlstrain < 0.005) {
                 phi = 0.65 + (stlstrain - 0.002) * (250 / 3);
             } else {
-                errorMessage += 'Tension strain in steel is NOT ACI compliant.\n';
-                errorMessage += '!!!DISREGARD ALL FOLLOWING VALUES. This section cannot be used!!!\n';
+                errorMessage += 'Tension strain in steel is less than 0.004 and therefore is not ACI compliant.\n';
+                errorMessage += 'These section parameters cannot be used!!!\n';
             }
 
             // Solve for maximum internal moment
