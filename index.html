@@ -27,12 +27,19 @@
             color: green;
             font-weight: bold;
         }
+        .image {
+            height: 200px;
+            width: auto;
+        } 
     </style>
 </head>
 <body>
     <h1>Phase III RC Beam Analysis Calculator</h1>
     <p>ANALYSIS AT FAILURE</p>
     <p>This program calculates a, c, the tension strain in steel, the maximum internal moment, and the design capacity moment.</p>
+
+    <img src="images/section1.png" alt="Labeled Section Diagram" class="image"><br>
+    
     <p>Input the following values:</p>
     
     <label for="fc">Compressive stress of concrete (psi): </label>
@@ -131,7 +138,10 @@
             } else {
                 document.getElementById('output').innerHTML = `<span class="success">${output}</span>`;
             }
+            // second section image
+            document.getElementByID('output').innerHTML += '<br><img src = "images/section2.png" alt="Labeled Section Diagram" class="image">';
         }
     </script>
+    
 </body>
 </html>
