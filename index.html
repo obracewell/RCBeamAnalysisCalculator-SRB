@@ -28,8 +28,8 @@
             font-weight: bold;
         }
         .image {
-            height: 50%;
-            width: auto;
+            width: 50%;
+            height: auto;
         } 
     </style>
 </head>
@@ -137,9 +137,8 @@
                 document.getElementById('output').innerHTML = `<span class="error">${errorMessage}</span>`;
             } else {
                 document.getElementById('output').innerHTML = `<span class="success">${output}</span>`;
-            }
             // second section image
-            document.getElementByID('output').innerHTML += '<br><img src = "images/section2.png" alt="Labeled Section Diagram" class="image">';
+               document.getElementById('output').innerHTML += '<br><img src="https://github.com/obracewell/RCanalysiscalculator/blob/main/assets/section1.png?raw=true" alt="Stress Analysis Diagram" class="image">';
         }
     </script>
     
