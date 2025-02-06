@@ -111,7 +111,7 @@
 
             // Solve for strain in steel
             const stlstrain = ((d - c) / c) * 0.003;
-            output += `Strain in steel is ${stlstrain.toFixed(3)}\n`;
+            output += `&#949<sub>t</sub> = ${stlstrain.toFixed(3)}\n`;
 
             // Calculate phi
             let phi;
@@ -126,11 +126,11 @@
 
             // Solve for maximum internal moment
             const Mn = As * fy * (d - (a / 2)) * (1 / 12000);
-            output += `Maximum internal moment Mn = ${Mn.toFixed(2)} k·ft\n`;
+            output += `Maximum internal moment M<sub>n</sub> = ${Mn.toFixed(2)} k·ft\n`;
 
             // Solve for usable/design capacity
             const descap = phi * Mn;
-            output += `Usable/design capacity (&#934·Mn) is ${descap.toFixed(2)} k·ft\n`;
+            output += `Usable/design capacity (&#934·M<sub>n</sub>) is ${descap.toFixed(2)} k·ft\n`;
 
             // Combine error messages and results, second section image
             if (errorMessage) {
