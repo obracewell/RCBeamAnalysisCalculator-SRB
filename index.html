@@ -105,6 +105,9 @@
             const a = (As * fy) / (0.85 * fc * b);
             output += `a = ${a.toFixed(2)} in\n`;
 
+            // Display b1
+            output += `&#946<sub?1</sub> = ${b1.toFixed(2)}\n`;
+            
             // Solve for c
             const c = a / b1;
             output += `c = ${c.toFixed(2)} in\n`;
@@ -128,11 +131,15 @@
 
             // Solve for maximum internal moment
             const Mn = As * fy * (d - (a / 2)) * (1 / 12000);
-            output += `Maximum internal moment M<sub>n</sub> = ${Mn.toFixed(2)} k·ft\n`;
+            output += `Maximum internal moment: M<sub>n</sub> = ${Mn.toFixed(2)} k·ft\n`;
 
             // Solve for usable/design capacity
             const descap = phi * Mn;
-            output += `Usable/design capacity (&#934M<sub>n</sub>) = ${descap.toFixed(2)} k·ft\n This is the maximum load to be ACI compliant.\n`;
+            output += `Usable/design capacity: &#934M<sub>n</sub> = ${descap.toFixed(2)} k·ft\n`;
+
+            //Solve for steel reinforcement ratio
+            const rho = As / (b * d);
+            output += `Steel reinforcing ratio: &#961 = ${rho.toFixed(4)}\n`;
 
             // Combine error messages and results, second section image
             if (errorMessage) {
