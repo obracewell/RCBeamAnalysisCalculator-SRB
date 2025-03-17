@@ -43,7 +43,8 @@
     </style>
 </head>
 <body>
-    <h1 class="centered">RC Beam Analysis Calculator - Singly Reinforced Beam</h1>
+    <h1 class="centered">RC Beam Analysis Calculator</h1>
+    <h1 class="centered">Singly Reinforced Beam</h1>
     <h2 class="centered">ANALYSIS AT FAILURE</h2>
     <p class="centered">This program calculates a, c, the tension strain in steel, the maximum internal moment, and the design capacity moment.</p>
 
@@ -256,7 +257,7 @@
                     y: [h - a, h - a],
                     mode: 'lines',
                     line: { color: 'blue' },
-                    showlegend: false
+                    name: 'Whitney Stress Block'
                 },
                 {
                     x: [0.03, 0.035],
