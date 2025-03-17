@@ -63,6 +63,26 @@
     <label for="As">Cross-sectional area of steel (in<sup>2</sup>): </label>
     <input type="number" id="As"><br>
 
+    <p>or steel bars:</p>
+    <label for="barSize">#</label>
+    <select id="barSize">
+        <option value="">Select bar size</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="14">14</option>
+        <option value="18">18</option>
+    </select>
+
+    <input type="number" id="numBars" placeholder="Number of bars">
+    <label for="numBars">bars</label><br>
+    
     <label for="d">Depth of steel (in): </label>
     <input type="number" id="d"><br>
 
@@ -76,14 +96,38 @@
     <div id="graph" style="width: 800px; height: 600px;"></div>
 
     <script>
+        //Bar size to area mapping
+        const barAreaTable = {
+            3: 0.11,
+            4: 0.20,
+            5: 0.31,
+            6: 0.44,
+            7: 0.60,
+            8: 0.79,
+            9: 1.00,
+            10: 1.27,
+            11: 1.56,
+            14: 2.25,
+            18: 4.00,
+        };
         function performAnalysis() {
             // Get input values
             const fc = parseFloat(document.getElementById('fc').value);
             const fy = parseFloat(document.getElementById('fy').value);
-            const As = parseFloat(document.getElementById('As').value);
+            let As = parseFloat(document.getElementById('As').value);
             const d = parseFloat(document.getElementById('d').value);
             const b = parseFloat(document.getElementById('b').value);
 
+            // Check for bar size alternative
+            if (isNaN(As) || As === 0) {
+                const barSize = parseInt(document.getElementById('barSize').value);
+                const numBars = parseFloat(document.getElementById('numBars').value);
+
+                if (!isNaN(barSize) && barAreaTable[barSize] && !isNaN(numBars)) {
+                    As = barAreaTable[barSize] * numBars;
+                }
+            }
+            
             // Validate inputs
             if (isNaN(fc) || isNaN(fy) || isNaN(As) || isNaN(d) || isNaN(b)) {
                 alert("Please enter all values.");
