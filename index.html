@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase III RC Beam Analysis Calculator</title>
+    <title>RC Beam Analysis Calculator - Singly Reinforced Beam</title>
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
     <style>
         body {
@@ -31,17 +31,27 @@
         .image {
             width: 280px;
             height: auto;
+        }
+        .centered {
+            text-align: center;
+        }
+        .centered-img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         } 
     </style>
 </head>
 <body>
-    <h1>Phase III RC Beam Analysis Calculator</h1>
-    <h2>ANALYSIS AT FAILURE</h2>
-    <p>This program calculates a, c, the tension strain in steel, the maximum internal moment, and the design capacity moment.</p>
+    <h1 class="centered">RC Beam Analysis Calculator - Singly Reinforced Beam</h1>
+    <h2 class="centered">ANALYSIS AT FAILURE</h2>
+    <p class="centered">This program calculates a, c, the tension strain in steel, the maximum internal moment, and the design capacity moment.</p>
 
-    <img src="https://github.com/obracewell/RCanalysiscalculator/blob/main/assets/section1.png?raw=true" alt="Stress Analysis Diagram" class="image" />
+    <img src="https://github.com/obracewell/RCanalysiscalculator/blob/main/assets/section1.png?raw=true" 
+        alt="Stress Analysis Diagram" 
+        class="image centered-img" />
     
-    <p>Input the following values:</p>
+    <p class="success">Input the following values:</p>
     
     <label for="fc">Compressive stress of concrete (psi): </label>
     <input type="number" id="fc"><br>
@@ -126,7 +136,7 @@
                 output += `&#934 = ${phi.toFixed(2)}, Ductile Section\n`;
             } else if (stlstrain >= 0.004 && stlstrain < 0.005) {
                 phi = 0.65 + (stlstrain - 0.002) * (250 / 3);
-                output += `&#934 = ${phi.toFixed(2)}, Transition Zone\n`;
+                output += `&#934 = ${phi.toFixed(2)}, <span style="color:orange;">Transition Zone</span>\n`;
             } else {
                 errorMessage += 'Tension strain in steel is less than 0.004 and therefore is not ACI compliant.\n';
                 errorMessage += 'These section parameters cannot be used.\n';
