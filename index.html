@@ -64,7 +64,7 @@
     <input type="number" id="fy"><br>
 
     <label for="As">Cross-sectional area of steel, A<sub>s</sub> (in<sup>2</sup>): </label>
-    <input type="number" id="As"><br>
+    <input type="number" id="As"oninput="toggleBarInputs()"><br>
 
     <div style="margin-left: 30px;">
     <label for="numBars">OR </label>
@@ -549,21 +549,45 @@
             Plotly.newPlot('graph', traces, layout, { staticPlot: true });
         }
         function toggleAsInput() {
-        const barSize = document.getElementById('barSize').value;
-        const numBars = document.getElementById('numBars').value;
-        const rows = parseInt(document.getElementById('rows').value);
-        const AsInput = document.getElementById('As');
+            const barSize = document.getElementById('barSize').value;
+            const numBars = document.getElementById('numBars').value;
+            const rows = parseInt(document.getElementById('rows').value);
+            const AsInput = document.getElementById('As');
 
-        // Disable As input if all bar config inputs are filled
-        if (barSize && numBars && rows) {
-            AsInput.disabled = true;
-            AsInput.placeholder = "Disabled (using bar selection)";
-            AsInput.value = ""; // Optional: clear any existing As
-        } else {
-            AsInput.disabled = false;
-            AsInput.placeholder = "Cross-sectional area of steel";
+            // Disable As input if all bar config inputs are filled
+            if (barSize && numBars && rows) {
+                AsInput.disabled = true;
+                AsInput.placeholder = "Disabled (using bar selection)";
+                AsInput.value = ""; // Optional: clear any existing As
+            } else {
+                AsInput.disabled = false;
+                AsInput.placeholder = "";
+            }
         }
-    }
+        function toggleBarInputs() {
+            const AsInput = document.getElementById('As');
+            const barSize = document.getElementById('barSize');
+            const numBars = document.getElementById('numBars');
+            const rows = document.getElementById('rows');
+
+            // Disable bar selection if As is entered
+            if (AsInput.value.trim() !== "") {
+                barSize.disabled = true;
+                numBars.disabled = true;
+                rows.disabled = true;
+
+            // Optional: Clear bar inputs
+                barSize.value = "";
+                numBars.value = "";
+                rows.value = "";
+            } else {
+                // Enable bar inputs again
+                 barSize.disabled = false;
+                numBars.disabled = false;
+                rows.disabled = false;
+            }
+    toggleAsInput(); // Also update As input state
+}
     </script>
 </body>
 </html>
