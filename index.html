@@ -255,12 +255,10 @@
             const b = parseFloat(document.getElementById('b').value);
 
             // Check for bar size alternative
+            const barSize = parseInt(document.getElementById('barSize').value);
+            const numBars = parseFloat(document.getElementById('numBars').value);
+            const rows = parseInt(document.getElementById('rows').value);
             if (isNaN(As) || As === 0) {
-                const barSize = parseInt(document.getElementById('barSize').value);
-                const numBars = parseFloat(document.getElementById('numBars').value);
-                const rowsValue = document.getElementById('rows').value;
-                const rows = parseInt(rowsValue);
-            }
                 if (isNaN(rows)) {
                     const outputDiv = document.getElementById('output');
                     outputDiv.innerHTML = `<span class="error">Please select the number of rows.</span>`;
@@ -280,6 +278,7 @@
                        Current b = <strong>${b} in</strong>. Please increase b or choose a different bar configuration.</span>`;
                         return;
                      }
+                }
             }
             
             // Validate inputs
