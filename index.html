@@ -274,8 +274,7 @@
                     // Check if beam width b is sufficient
                     if (barConfig && b < barConfig.bmin) {
                         const outputDiv = document.getElementById('output');
-                        outputDiv.innerHTML = `<span class="error">Selected configuration <strong>${barSelectionStr}</strong> requires a minimum beam width of <strong>${barConfig.bmin} in</strong>.<br>
-                       Current b = <strong>${b} in</strong>. Please increase b or choose a different bar configuration.</span>`;
+                        outputDiv.innerHTML = `<span class="error">Selected configuration ${barSelectionStr} requires a minimum beam width of ${barConfig.bmin} in. Increase b or choose a different bar configuration.</span>`;
                         return;
                      }
                 }
