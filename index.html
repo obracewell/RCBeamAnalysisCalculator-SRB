@@ -40,7 +40,10 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-        } 
+        }
+        input:disabled {
+            background-color: #e0e0e0;
+        }
     </style>
 </head>
 <body>
@@ -65,9 +68,9 @@
 
     <div style="margin-left: 30px;">
     <label for="numBars">OR </label>
-    <input type="number" id="numBars" placeholder="Number of bars">
+    <input type="number" id="numBars" placeholder="Number of bars" oninput="toggleAsInput()">
     <label for="barSize">#</label>
-    <select id="barSize">
+    <select id="barSize" onchange="toggleAsInput()">
         <option value="">Select bar size</option>
         <option value="3">3</option>
         <option value="4">4</option>
@@ -81,9 +84,9 @@
         <option value="14">14</option>
         <option value="18">18</option>
     </select>
-    <label for="rows">#</label>
-    <select id="rows">
-        <option value="">Select number of rows</option>
+    <label for="rows">Rows of Bars:</label>
+    <select id="rows" onchange="toggleAsInput()">
+        <option value="">Select</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -104,6 +107,7 @@
     <div id="graph" style="width: 800px; height: 600px;"></div>
 
     <script>
+       
         //Bar size to area mapping
         const barAreaTable = {
             3: 0.11,
@@ -123,7 +127,7 @@
           { barSelection: "2#4 bars", area: 0.39, rows: 1, bmin: 6.8 },
           { barSelection: "3#4 bars", area: 0.58, rows: 1, bmin: 8.3 },
           { barSelection: "4#4 bars", area: 0.78, rows: 1, bmin: 9.8 },
-          { barSelection: "4#4 bars", area: 0.78, rows: 1, bmin: 6.8 },
+          { barSelection: "4#4 bars", area: 0.78, rows: 2, bmin: 6.8 },
           { barSelection: "5#4 bars", area: 0.98, rows: 1, bmin: 11.3 },
           { barSelection: "6#4 bars", area: 1.18, rows: 1, bmin: 12.8 },
           { barSelection: "6#4 bars", area: 1.18, rows: 2, bmin: 8.3 },
@@ -254,13 +258,21 @@
             if (isNaN(As) || As === 0) {
                 const barSize = parseInt(document.getElementById('barSize').value);
                 const numBars = parseFloat(document.getElementById('numBars').value);
+                const rowsValue = document.getElementById('rows').value;
+                const rows = parseInt(rowsValue);
 
+                if (isNaN(rows)) {
+                    const outputDiv = document.getElementById('output');
+                    outputDiv.innerHTML = `<span class="error">Please select the number of rows.</span>`;
+                return;
+                }
+                
                 if (!isNaN(barSize) && barAreaTable[barSize] && !isNaN(numBars)) {
                     As = barAreaTable[barSize] * numBars;
                     // Create the bar selection string, e.g., "4#5 bars"
                     const barSelectionStr = `${numBars}#${barSize} bars`;
                    // Find matching bar configuration from the table
-                    const barConfig = barTable.find(config => config.barSelection === barSelectionStr);
+                    const barConfig = barTable.find(config => config.barSelection === barSelectionStr && config.rows === rows);
                     // Check if beam width b is sufficient
                     if (barConfig && b < barConfig.bmin) {
                         const outputDiv = document.getElementById('output');
@@ -538,6 +550,22 @@
 
             Plotly.newPlot('graph', traces, layout, { staticPlot: true });
         }
+        function toggleAsInput() {
+        const barSize = document.getElementById('barSize').value;
+        const numBars = document.getElementById('numBars').value;
+        const rows = document.getElementById('rows').value;
+        const AsInput = document.getElementById('As');
+
+        // Disable As input if all bar config inputs are filled
+        if (barSize && numBars && rows) {
+            AsInput.disabled = true;
+            AsInput.placeholder = "Disabled (using bar selection)";
+            AsInput.value = ""; // Optional: clear any existing As
+        } else {
+            AsInput.disabled = false;
+            AsInput.placeholder = "Cross-sectional area of steel";
+        }
+    }
     </script>
 </body>
 </html>
