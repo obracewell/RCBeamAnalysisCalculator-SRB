@@ -260,7 +260,7 @@
                 const numBars = parseFloat(document.getElementById('numBars').value);
                 const rowsValue = document.getElementById('rows').value;
                 const rows = parseInt(rowsValue);
-
+            }
                 if (isNaN(rows)) {
                     const outputDiv = document.getElementById('output');
                     outputDiv.innerHTML = `<span class="error">Please select the number of rows.</span>`;
@@ -367,7 +367,7 @@
             // Plot the graph
             plotGraph(b, d, c, a);
         }
-
+        
         function plotGraph(b, d, c, a) {
             const h = d + 2;
             const x_range = [-0.03 - b * 0.001, -0.03, 0.06];
