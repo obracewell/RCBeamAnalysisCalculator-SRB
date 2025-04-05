@@ -553,7 +553,7 @@
         function toggleAsInput() {
         const barSize = document.getElementById('barSize').value;
         const numBars = document.getElementById('numBars').value;
-        const rows = document.getElementById('rows').value;
+        const rows = parseInt(document.getElementById('rows').value);
         const AsInput = document.getElementById('As');
 
         // Disable As input if all bar config inputs are filled
