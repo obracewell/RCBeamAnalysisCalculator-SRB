@@ -388,11 +388,51 @@
             document.getElementById('graphButtons').style.display = 'block';
         }
         
-        function plotGraph(b, d, c, a) {
+        function plotGraph(b, d, c, a, fc, fy, As) {
             const h = d + 2;
             const x_range = [-0.03 - b * 0.001, -0.03, 0.06];
 
             const traces = [
+                {
+                    x: [],
+                    y: [],
+                    mode: 'lines',
+                    line: { color: 'white' },
+                    name: `f'<sub>c</sub> = ${fc} psi`,
+                    showlegend: true
+                },
+                {
+                    x: [],
+                    y: [],
+                    mode: 'lines',
+                    line: { color: 'white' },
+                    name: `f<sub>y</sub> = ${fy} psi`,
+                    showlegend: true
+                },
+                {
+                    x: [],
+                    y: [],
+                    mode: 'lines',
+                    line: { color: 'white' },
+                    name: `A<sub>s</sub> = ${As.toFixed(2)} in²`,
+                    showlegend: true
+                },
+                {
+                    x: [],
+                    y: [],
+                    mode: 'lines',
+                    line: { color: 'white' },
+                    name: `d = ${d} in`,
+                    showlegend: true
+                },
+                {
+                    x: [],
+                    y: [],
+                    mode: 'lines',
+                    line: { color: 'white' },
+                    name: `b = ${b} in`,
+                    showlegend: true
+                },
                 {
                     x: [-0.03 - b * 0.001, -0.03],
                     y: [0, 0],
@@ -633,7 +673,7 @@ function downloadGraphImage() {
     Plotly.toImage(graphDiv, { format: 'png' }).then(function(dataUrl) {
         const link = document.createElement('a');
         link.href = dataUrl;
-        link.download = 'TBeamGraph.png';
+        link.download = 'SRBAnalysisGraph.png';
         link.click();
     });
 }
