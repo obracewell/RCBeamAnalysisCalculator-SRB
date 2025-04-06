@@ -68,7 +68,17 @@
 
     <div style="margin-left: 30px;">
     <label for="numBars">OR </label>
-    <input type="number" id="numBars" placeholder="Number of bars" oninput="toggleAsInput()">
+    <select id="numBars" onchange="toggleAsInput()">
+        <option value="">Select number of bars</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+    </select>
     <label for="barSize">#</label>
     <select id="barSize" onchange="toggleAsInput()">
         <option value="">Select bar size</option>
