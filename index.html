@@ -394,42 +394,37 @@
 
             const traces = [
                 {
-                    x: [],
-                    y: [],
-                    mode: 'lines',
-                    line: { color: 'white' },
+                    x: [null],
+                    y: [null],
+                    mode: 'none',
                     name: `f'<sub>c</sub> = ${fc} psi`,
                     showlegend: true
                 },
                 {
-                    x: [],
-                    y: [],
-                    mode: 'lines',
-                    line: { color: 'white' },
+                    x: [null],
+                    y: [null],
+                    mode: 'none',
                     name: `f<sub>y</sub> = ${fy} psi`,
                     showlegend: true
                 },
                 {
-                    x: [],
-                    y: [],
-                    mode: 'lines',
-                    line: { color: 'white' },
+                    x: [null],
+                    y: [null],
+                    mode: 'none',
                     name: `A<sub>s</sub> = ${As.toFixed(2)} in²`,
                     showlegend: true
                 },
                 {
-                    x: [],
-                    y: [],
-                    mode: 'lines',
-                    line: { color: 'white' },
+                    x: [null],
+                    y: [null],
+                    mode: 'none',
                     name: `d = ${d} in`,
                     showlegend: true
                 },
                 {
-                    x: [],
-                    y: [],
-                    mode: 'lines',
-                    line: { color: 'white' },
+                    x: [null],
+                    y: [null],
+                    mode: 'none',
                     name: `b = ${b} in`,
                     showlegend: true
                 },
@@ -583,8 +578,8 @@
                 xValues.push(x);
                 yValues.push(y);
             }
-            traces[19].x = xValues;
-            traces[19].y = yValues;
+            traces[24].x = xValues;
+            traces[24].y = yValues;
 
             const layout = {
                 xaxis: { showticklabels: false, visible: false, scaleanchor: 'y', scaleratio: 1000 },
